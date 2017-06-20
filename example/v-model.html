@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <p>{{message}}</p>
+        <p>v-model:<input type="text" v-model="message"></p>
+        <p>v-model.lazy:当失去焦点时才更新数据<input type="text" v-model.lazy="message"></p>
+        <p>v-model.trim:去除前后空格<input type="text" v-model.trim="message"></p>
+        <p>v-model.number:输入字符串转为数字。<input type="text" v-model.number="message"></p>
+        <hr>
+
+        <div>
+            <p>多选框绑定数组</p>
+            <input type="checkbox" id="1" value="hulc" v-model="name">
+            <label for="1">hulc</label>
+            <input type="checkbox" id="2" value="hlongc" v-model="name">
+            <label for="2">hlongc</label>
+            <input type="checkbox" id="3" value="hlc" v-model="name">
+            <label for="3">hlc</label>
+            <p>{{name}}</p>
+        </div>
+        <hr>
+        <div>
+            <p>单选框绑定值</p>
+            <input type="radio" id="man" value="1" v-model="sex">
+            <label for="man">男</label>
+            <input type="radio" id="woman" value="0" v-model="sex">
+            <label for="woman">女</label>
+            <br>
+            <span>你选择的是:{{sex==0?'女':'男'}}</span>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello vue11',
+                name: [],
+                sex: 0
+            }
+        })
+
+    </script>
+</body>
+
+</html>

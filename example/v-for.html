@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-if v-show</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in reSort">
+                {{item}}
+            </li>
+        </ul>
+        <hr>
+        <ul>
+            <li v-for="(stu,index) in students">
+                {{index+1}}:{{stu.name}}--{{stu.age}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                items: [15, 14, 25, 26, 9, 12, 3],
+                students: [{
+                        name: 'hlc',
+                        age: 20
+                    },
+                    {
+                        name: 'hlongc',
+                        age: 25
+                    },
+                    {
+                        name: 'hulc',
+                        age: 18
+                    },
+                    {
+                        name: 'hulongc',
+                        age: 22
+                    }
+                ]
+            },
+            methods: {
+
+            },
+            computed: {
+                reSort: function() {
+                    return this.items.sort(sortNum);
+                },
+                reStu: function() {
+                    return sortByKey(this.students, 'age');
+                }
+            }
+        });
+
+        function sortNum(a, b) {
+            return a - b;
+        }
+
+        function sortByKey(array, key) {
+            return array.sort(function(a, b) {
+                var x = a[key];
+                var y = b[key];
+                return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+            });
+        }
+
+    </script>
+</body>
+
+</html>

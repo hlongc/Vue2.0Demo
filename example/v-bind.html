@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+    <style>
+        .classA {
+            font-size: 30px;
+        }
+
+        .classB {
+            color: red;
+        }
+
+        .classC {
+            color: blue;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <div>
+            <p>绑定class</p>
+            <p :class="A">1、绑定单个class样式</p>
+            <p :class="{classC:isTrue}">2、判断绑定class样式</p>
+            <p :class="[A,B]">3、绑定多个class样式</p>
+            <p :class="chooseA?A:C">4、三元运算符绑定样式</p>
+            <p :style="{color:colors,fontSize:font}">5、绑定style</p>
+            <p :style="beauty">6、使用对象添加style</p>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                A: 'classA',
+                B: 'classB',
+                C: 'classC',
+                chooseA: false,
+                isTrue: true,
+                colors: 'red',
+                font: '22px',
+                beauty: {
+                    color: 'skyblue',
+                    textDecoration: 'underline'
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <input type="radio" id="dw1" value="animal1" v-model="what">
+        <label for="dw1">fish组建</label>
+        <input type="radio" id="dw2" value="animal2" v-model="what">
+        <label for="dw2">panda组建</label>
+        <input type="radio" id="dw3" value="animal3" v-model="what">
+        <label for="dw3">monkey组建</label>
+        <animal :is="what"></animal>
+    </div>
+
+    <script>
+        var animal1 = {
+            template: `<h1 style="color:red">我是fish</h1>`
+        }
+        var animal2 = {
+            template: `<h2 style="color:skyblue">我是panda</h2>`
+        }
+        var animal3 = {
+            template: `<h3 style="color:pink">我是monkey</h3>`
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                what: 'animal1'
+            },
+            components: {
+                "animal1": animal1,
+                "animal2": animal2,
+                "animal3": animal3
+            }
+        })
+
+    </script>
+</body>
+
+</html>

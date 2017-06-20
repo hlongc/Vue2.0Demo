@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <div v-hlc="color">{{num}}</div>
+        <p><button @click="add">add</button></p>
+    </div>
+    <p><button onclick="unbind()">unbind</button></p>
+
+    <script>
+        Vue.directive('hlc', function(ele, binding, vnode) {
+            //ele: 指令所绑定的元素，可以用来直接操作DOM。 
+            //binding: 一个对象，包含指令的很多信息。 
+            //vnode: Vue编译生成的虚拟节点。 
+            console.log(ele);
+            console.log(binding);
+            ele.style = 'color:' + binding.value;
+        })
+        /*function unbind() {
+            app.$destroy();
+        }
+        Vue.directive('hlc', {
+            bind: function() { //被绑定
+                console.log('1 - bind');
+            },
+            inserted: function() { //绑定到节点
+                console.log('2 - inserted');
+            },
+            update: function(ele, binding) { //组件更新
+                console.log('3 - update');
+                ele.style = 'color:' + binding.value;
+            },
+            componentUpdated: function() { //组件更新完成
+                console.log('4 - componentUpdated');
+            },
+            unbind: function() { //解绑
+                console.log('5 - unbind');
+            }
+        })*/
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 5,
+                color: 'skyblue'
+            },
+            methods: {
+                add: function() {
+                    this.num++;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        {{count}}
+        <ul>
+            <li v-for="item in arr">
+                {{item}}
+            </li>
+        </ul>
+    </div>
+    <button onclick="change()">change</button>
+    <script>
+        function change() {
+            //Vue.set(outData, 'count', 2);
+            //outData.count++;
+            //app.count++;① 三种方式都可以改变数据,但是如果单独操作数组时，Vue不能监测到数据的改变,如写法②,但是如果①②一起操作也能改变
+            //outData.arr[1]++;②
+            Vue.set(app.arr, 1, app.arr[1] + 1); //这样写就能单独改变数组
+        }
+        var outData = {
+            count: 1,
+            arr: [1, 2, 3, 4]
+        }
+        var app = new Vue({
+            el: '#app',
+            data: outData //引入外部数据作为数据源
+        })
+
+    </script>
+</body>
+
+</html>

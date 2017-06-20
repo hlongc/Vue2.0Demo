@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <input type="radio" id="area1" value="成都" v-model="area">
+        <label for="area1">成都</label>
+        <input type="radio" id="area2" value="新都" v-model="area">
+        <label for="area2">新都</label>
+        <input type="radio" id="area3" value="四川" v-model="area">
+        <label for="area3">四川</label>
+        <panda :come-from='area'></panda>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                area: '成都'
+            },
+            components: {
+                'panda': {
+                    template: `<h1 style="color:green">panda from {{comeFrom}}</h1>`,
+                    props: ['comeFrom']
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>v-if v-show</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='greet' id="btn">切换</button>
+        <div v-if='isLogin'>你好！胡龙超</div>
+        <div v-else>请登录</div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                isLogin: false
+            },
+            methods: {
+                greet: function() {
+                    this.isLogin = !this.isLogin;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
