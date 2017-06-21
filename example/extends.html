@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <p>${message}</p>
+        <button @click="add">add</button>
+    </div>
+
+    <script>
+        var ex = {
+            created: function() {
+                console.log('扩展被创建了');
+            },
+            methods: {
+                add1: function() {
+                    console.log('我是扩展的add方法'); //当构造器中存在同名方法时，扩展中的方法不会被执行
+                }
+            }
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 1
+            },
+            methods: {
+                add: function() {
+                    this.message++;
+                    console.log('我是构造器中的add方法');
+                }
+            },
+            extends: ex,
+            delimiters: ['${', '}'] //改变插值符号
+        })
+
+    </script>
+</body>
+
+</html>

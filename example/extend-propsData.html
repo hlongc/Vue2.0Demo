@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <hlongc></hlongc>
+
+    <script>
+        var ex = Vue.extend({
+            template: `<h1>扩展内容name:{{name}},sex:{{sex}}</h1>`,
+            data: function() {
+                return {
+                    name: 'hulongc'
+                }
+            },
+            props: ['sex']
+        })
+        new ex({
+            propsData: {
+                sex: 'man'
+            }
+        }).$mount('hlongc');
+
+    </script>
+</body>
+
+</html>

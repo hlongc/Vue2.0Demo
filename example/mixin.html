@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <p>{{message}}</p>
+        <button @click="add">add</button>
+    </div>
+
+    <script>
+        var con = {
+            updated: function() {
+                console.log('数据发生变化，此时为:' + this.message);
+            }
+        }
+        Vue.mixin({
+            updated: function() {
+                console.log('全局混入');
+            }
+        })
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 1
+            },
+            methods: {
+                add: function() {
+                    this.message++;
+                }
+            },
+            updated: function() {
+                console.log('全局updated')
+            },
+            mixins: [con]
+        })
+
+    </script>
+</body>
+
+</html>

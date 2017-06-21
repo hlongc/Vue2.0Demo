@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <temperature :t="dt"></temperature>
+        <button @click="add(true)">升温</button>
+        <button @click="add(false)">降温</button>
+    </div>
+
+    <script>
+        var temperature = {
+            template: `<h1>今天{{t.now}}°-->{{t.dress}}</h1>`,
+            props: ['t']
+        }
+        var dresses = ['适合穿防寒服', '适合穿夹克', '适合穿短袖'];
+        var app = new Vue({
+            el: '#app',
+            data: {
+                dt: {
+                    now: 3,
+                    dress: dresses[0]
+                }
+            },
+            components: {
+                "temperature": temperature
+            },
+            /*methods: {
+                add: function(b) {
+                    if (b) {
+                        this.dt.now += 3;
+                        this.dt.dress = this.dt.now < 0 ? dresses[0] : (this.dt.now > 30 ? dresses[2] : dresses[1]);
+
+                    } else {
+                        this.dt.now -= 3;
+                        this.dt.dress = this.dt.now < 0 ? dresses[0] : (this.dt.now > 30 ? dresses[2] : dresses[1]);
+                    }
+                }
+            }*/
+            methods: {
+                add: function(b) {
+                    if (b) {
+                        this.dt.now += 3;
+
+                    } else {
+                        this.dt.now -= 3;
+                    }
+                }
+            }
+        })
+        app.$watch('dt', function(newVal, oldVal) {
+            if (newVal.now > 30) {
+                this.dt.dress = dresses[2];
+            } else if (newVal.now < 0) {
+                this.dt.dress = dresses[0];
+            } else {
+                this.dt.dress = dresses[1];
+            }
+        }, {
+            deep: true //添加此对象才能监听对象中的属性变化，而数组不需要
+        })
+
+    </script>
+</body>
+
+</html>

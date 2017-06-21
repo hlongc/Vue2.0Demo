@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <p>{{num}}</p>
+        <button @click="add(2)">add2</button>
+        <btn @click.native="add(3)"></btn>//组件想要调用构造器里的method就需要.native
+    </div>
+    <button onclick="app.add(1)">add1</button>
+    <script>
+        var btn = {
+            template: `<button>add3</button>`
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 3
+            },
+            components: {
+                "btn": btn
+            },
+            methods: {
+                add: function(number) {
+                    this.num += number;
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>
