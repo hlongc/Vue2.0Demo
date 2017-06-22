@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <hlc>
+            <span slot='url'>{{hlcInfo.github}}</span>
+            <span slot='age'>{{hlcInfo.age}}</span>
+            <span slot='type'>{{hlcInfo.type}}</span>
+        </hlc>
+    </div>
+    <template id="t">
+        <div>
+            <p>github:<slot name='url'></slot></p>
+            <p>age:<slot name='age'></slot></p>
+            <p>type:<slot name='type'></slot></p>
+        </div>
+    </template>
+    <script>
+        var temp = {
+            template: '#t'
+        }
+        var app = new Vue({
+            el: '#app',
+            data: {
+                hlcInfo: {
+                    github: 'github.com/hlongc',
+                    age: 22,
+                    type: 'web前端'
+                }
+            },
+            components: {
+                'hlc': temp
+            }
+        })
+
+    </script>
+</body>
+
+</html>

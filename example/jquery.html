@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-3.1.0.min.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">{{message}}</div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'hello vue11'
+            },
+            mounted: function() {
+                $("#app").append('<h2>我是jquery插入进来的h2标签</h2>');
+                console.log($);
+            },
+            methods: {
+                show: function() {
+                    console.log('被调用');
+                }
+            }
+        })
+        app.show();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+        <p>${message}</p>
+        <button @click="add()">add</button>
+    </div>
+    <p><button onclick="reduce()">reduce</button></p>
+    <p><button onclick="reduceOnce()">reduceOnce</button></p>
+    <p><button onclick="off()">off</button></p>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 5
+            },
+            methods: {
+                add: function() {
+                    this.message++;
+                }
+            },
+            delimiters: ['${', '}']
+        })
+        app.$on('reduce', function() { //$on被绑定的方法可以多次被调用
+            this.message--;
+        })
+        app.$once('reduceOnce', function() { //$once被绑定的方法只能被调用一次
+            this.message--;
+        })
+
+        function reduce() {
+            app.$emit('reduce');
+        }
+
+        function reduceOnce() {
+            app.$emit('reduceOnce');
+        }
+
+        function off() {
+            app.$off('reduce'); //关闭这个方法，不能再被外部调用
+        }
+
+    </script>
+</body>
+
+</html>

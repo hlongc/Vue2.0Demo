@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>hello</h1>
+    <hr>
+    <div id="app">
+
+    </div>
+    <button onclick="destroy()">destroy</button>
+    <button onclick="forceUpdate()">forceUpdate</button>
+    <button onclick="nextTick()">nextTick</button>
+    <script>
+        Vue.config.devtools = true;
+        var Ex = Vue.extend({
+            template: `<h2>{{dt}}扩展</h2>`,
+            data: function() {
+                return {
+                    dt: 'Vue'
+                }
+            },
+            destroyed: function() {
+                console.log('被销毁了');
+            },
+            forceUpdated: function() {
+                console.log('forceUpdate');
+            }
+        })
+        var vm = new Ex().$mount('#app');
+
+        function destroy() {
+            vm.$destroy();
+        }
+
+        function forceUpdate() {
+            vm.$forceUpdate();
+        }
+
+        function nextTick() {
+            vm.dt = '改变';
+            vm.$nextTick(function() {
+                console.log('更新以后被调用');
+            })
+        }
+
+    </script>
+</body>
+
+</html>
